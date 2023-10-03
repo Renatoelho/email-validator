@@ -1,0 +1,13 @@
+[Unit]
+Description=Servidor App OCR
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/ocr/python/ocr/
+User=ocr
+ExecStart=/bin/bash -c 'source /home/ocr/python/ocr/.venv/bin/activate && streamlit run /home/ocr/python/ocr/app.py'
+
+[Install]
+WantedBy=multi-user.target
