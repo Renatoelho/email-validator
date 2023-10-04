@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Response(BaseModel):
+class Result(BaseModel):
     email: str
     domain_tld: bool
     domain_dns_mx: bool
