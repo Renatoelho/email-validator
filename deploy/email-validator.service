@@ -1,13 +1,14 @@
 [Unit]
-Description=Servidor App OCR
-After=multi-user.target
+Description=Simulador de Regionais
+After=network.target
 
 [Service]
 Type=simple
 Restart=always
-WorkingDirectory=/home/ocr/python/ocr/
-User=ocr
-ExecStart=/bin/bash -c 'source /home/ocr/python/ocr/.venv/bin/activate && streamlit run /home/ocr/python/ocr/app.py'
+WorkingDirectory=/home/user01/app/
+User=user01
+ExecStart=/bin/bash -c '/home/user01/.virtualenvs/bin/gunicorn app:app -b 0.0.0.0:8888 -k uvicorn.workers.UvicornWorker -w 4 --graceful-timeout 0 --access-logfile /home/user01/app/app.log 2>&1'
 
 [Install]
 WantedBy=multi-user.target
+
