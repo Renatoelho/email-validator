@@ -7,3 +7,4 @@ class Result(BaseModel):
     domain_dns_mx: bool
     syntax: bool
     score: int
+    mensage: str

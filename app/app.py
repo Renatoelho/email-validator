@@ -3,6 +3,8 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
+from utils.dns_domain import run_dns_record
+
 from models.payload import Payload
 from models.result import Result
 from models.health import Health
@@ -23,7 +25,8 @@ sample = {
 
 @app.get("/healthcheck",
     response_model=Health,
-    responses={200: {"model": Health}, 500: {"model": Errors}})
+    responses={200: {"model": Health}, 500: {"model": Errors}}
+)
 async def healthcheck():
     try:
         content = {"status": True, "mensage": "everything is OK"}
@@ -46,8 +49,9 @@ async def healthcheck():
 )
 async def email_validator(payload: Payload):
     try:
-        #data_payload =  Payload(**payload)
-        #data_payload = "data_payload.dict()"
+        #data_payload =  Payload(payload)
+        #print(data_payload)
+        run_dns_record(payload.email)
         return JSONResponse(status_code=200, content=sample)
     except Exception as erro:
         erro = f"The following error occurred on the server: {erro}"
