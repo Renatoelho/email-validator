@@ -3,12 +3,12 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-from utils.dns_domain import run_dns_record
-
 from models.payload import Payload
 from models.result import Result
 from models.health import Health
 from models.errors import Errors
+
+from utils.dns_domain import run_dns_record
 
 
 app = FastAPI()
