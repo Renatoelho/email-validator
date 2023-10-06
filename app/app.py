@@ -13,11 +13,6 @@ from utils.dns_domain import run_dns_record
 
 app = FastAPI()
 
-@app.get("/docs", include_in_schema=False)
-async def custom_redoc():
-    return redoc.html()
-
-
 @app.get("/healthcheck",
     response_model=Health,
     responses={200: {"model": Health}, 500: {"model": Errors}}
