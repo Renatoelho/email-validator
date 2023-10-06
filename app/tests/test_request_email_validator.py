@@ -2,7 +2,7 @@ import requests
 
 url = "http://localhost:8888/email-validator"
 
-payload = {"email": "contato@renato.tec.br"}
+payload = {"email": "%testev@gmail.com.br"}
 
 response = requests.post(url, json=payload)
 

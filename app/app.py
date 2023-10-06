@@ -13,14 +13,9 @@ from models.errors import Errors
 
 app = FastAPI()
 
-
-sample = {
-"email": "contato@renato.tec.br",
-"domain_tld": True,
-"domain_dns_mx": True,
-"syntax": True,
-"score": 90.0
-}
+@app.get("/docs", include_in_schema=False)
+async def custom_redoc():
+    return redoc.html()
 
 
 @app.get("/healthcheck",
@@ -49,10 +44,7 @@ async def healthcheck():
 )
 async def email_validator(payload: Payload):
     try:
-        #data_payload =  Payload(payload)
-        #print(data_payload)
-        run_dns_record(payload.email)
-        return JSONResponse(status_code=200, content=sample)
+        return JSONResponse(status_code=200, content=run_dns_record(payload.email))
     except Exception as erro:
         erro = f"The following error occurred on the server: {erro}"
         content_error = (

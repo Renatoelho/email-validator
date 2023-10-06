@@ -1,9 +1,13 @@
+
+from re import search
 from subprocess import run, PIPE
 
+from domains import WHITE_LIST
+from domains import exception_email_not_validate
 
 def _check_tld(records: list) -> bool:
     try:
-        check = [index for index, record in enumerate(records) if "require".lower() in record]
+        check = [index for index, record in enumerate(records) if "could not resolve domain" in record.lower()]
         if len(check) > 0:
             return True
         else:
@@ -13,7 +17,7 @@ def _check_tld(records: list) -> bool:
 
 def _count_record_mx(records: list) -> int:
     try:
-        check = [index for index, record in enumerate(records) if ".py".lower() in record]
+        check = [index for index, record in enumerate(records) if "mx " in record.lower()]
         if len(check) > 0:
             return len(check)
         else:
@@ -21,9 +25,12 @@ def _count_record_mx(records: list) -> int:
     except Exception as _:
         return 0
 
-def _check_user_name_email(user_email: str) -> bool:
+def _check_user_name_email(user_name_email: str) -> bool:
     try:
-        return True
+        if search(r"^[a-zA-Z0-9._%+-]+$", user_name_email):
+            return True
+        else:
+            return False
     except Exception as _:
         return False
 
@@ -37,13 +44,15 @@ def _define_score(
     try:
         if return_code_dns_recon == 0:
             if tld_exists and count_mx > 0 and email_valid:
-                score = [True, True, True, 90.0, "Email valid"]
+                score = [True, True, True, 90.0, "Trusted email"]
             elif tld_exists and count_mx > 0 and not email_valid:
-                score = [True, True, False, 70.0, "Syntax user email invalid"]
+                score = [True, True, False, 70.0, "Invalid email username syntax"]
             elif tld_exists and count_mx == 0 and not email_valid:
                 score = [True, False, False, 45.0, "Only TLD is valid"]
+            elif tld_exists and count_mx == 0 and email_valid:
+                score = [True, False, True, 65.0, "TLD and name user mail is valid"]
             else:
-                score = [False, False, False, 0.0, "Email invalid"]
+                score = [False, False, False, 0.0, "Untrusted email"]
             return {
                 "email": email,
                 "domain_tld": score[0],
@@ -53,32 +62,27 @@ def _define_score(
                 "mensage": score[4]
             }
         else:
-            return {
-                "email": email,
-                "domain_tld": False,
-                "domain_dns_mx": False,
-                "syntax": False,
-                "score": 0,
-                "mensage": "Unable to validate email."
-            }
-    except Exception as _:
-        return {
-            "email": email,
-            "domain_tld": False,
-            "domain_dns_mx": False,
-            "syntax": False,
-            "score": 0,
-            "mensage": "Unable to validate email."
-        }    
+            return exception_email_not_validate(email, "erro in dnsrecon")
+    except Exception as erro:
+        return exception_email_not_validate(email, erro)  
 
-def run_dns_record(email: str) -> str:
+def run_dns_record(email: str) -> dict:
     try:
-        user_email = email.split("@")[0].strip()
-        #domain_email = email.split("@")[1].strip()
-        domain_email = "-lha"
-        print(user_email, "="*5, domain_email)
+        user_email = email.split("@")[0]
+        domain_email = email.split("@")[1].strip()
 
-        command = run(["ls", domain_email], stdout=PIPE, stderr=PIPE)
-        print(_define_score(command.returncode, email, True, 0, True))
-    except Exception as _:
-        print(_)
+        command = run(["dnsrecon", "-d", domain_email], stdout=PIPE, stderr=PIPE)
+        records_dns = command.stdout.decode("utf-8").split("\n")
+
+        if domain_email not in WHITE_LIST:
+            tld_exists = _check_tld(records_dns)
+            count_mx = _count_record_mx(records_dns)
+        else:
+            tld_exists = True
+            count_mx = 1
+        
+        user_email_valid = _check_user_name_email(user_email)
+        
+        return _define_score(command.returncode, email, tld_exists, count_mx, user_email_valid)
+    except Exception as erro:
+        return exception_email_not_validate(email, erro)
