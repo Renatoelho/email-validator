@@ -74,6 +74,10 @@ Para obter mais detalhes sobre como este projeto foi desenvolvido, verifique os 
 
 Este projeto é licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT) - consulte o arquivo [LICENSE](https://github.com/Renatoelho/email-validator/blob/main/LICENSE) para obter detalhes.
 
+### Agradecimentos
+
+Agradecimento a ***Emerson de Sales*** por suas contribuições para este projeto!
+
 ### Referências
 
 O que é um domínio de nível superior (TLD)?, ***Cloudflare***. Disponível em: <https://www.cloudflare.com/pt-br/learning/dns/top-level-domain/>. Acesso em: 3 out. 2023.
