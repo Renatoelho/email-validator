@@ -37,11 +37,11 @@ Foi criada uma API com FastAPI (Python) que inclui um endpoint (***/email_valida
 
 ```json
 {
-    “email”: “contato@renato.tec.br”,
-    “domain_tld”: true,
-    “domain_dns_mx”: true,
-    “syntax”: true,
-    “score”: 90.0
+    'email': 'contato@renato.tec.br',
+    'domain_tld': true,
+    'domain_dns_mx': true,
+    'syntax': true,
+    'score': 90.0
 }
 ```
 
@@ -66,6 +66,10 @@ docker run -d --name=email-validator --hostname=email-validator -p 8888:8888 ren
 [http://localhost:8888/healthcheck](http://localhost:8888/healthcheck)
 
 > ***Observação:*** Esse endpoint do ***Healthcheck*** é para, se caso você for implantar a solução utilizando o docker compose por exemplo.
+
+### Detalhes da aplicação
+
+Para obter mais detalhes sobre como este projeto foi desenvolvido, verifique os arquivos do projeto [clicando aqui](https://github.com/Renatoelho/email-validator/tree/main/app). Para acessar a parte de construção da imagem da solução, [visite aqui](https://github.com/Renatoelho/email-validator/blob/main/README-build.md).
 
 ### Licença
 
