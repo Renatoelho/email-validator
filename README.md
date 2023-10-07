@@ -70,6 +70,10 @@ docker run -d --name=email-validator --hostname=email-validator -p 8888:8888 ren
 
 Para obter mais detalhes sobre como este projeto foi desenvolvido, verifique os arquivos do projeto [clicando aqui](https://github.com/Renatoelho/email-validator/tree/main/app). Para acessar a parte de construção da imagem da solução, [visite aqui](https://github.com/Renatoelho/email-validator/blob/main/README-build.md).
 
+### Vídeo de apresentação
+
+Em desenvolvimento...
+
 ### Licença
 
 Este projeto é licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT) - consulte o arquivo [LICENSE](https://github.com/Renatoelho/email-validator/blob/main/LICENSE) para obter detalhes.
