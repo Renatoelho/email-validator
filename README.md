@@ -16,7 +16,7 @@ Existem várias maneiras de atribuir uma alta taxa de confiança a um determinad
 
 A abordagem mais eficaz envolve a implementação de um fluxo de confirmação de e-mail. No entanto, essa opção é mais adequada quando o usuário detentor do endereço de e-mail está se cadastrando no sistema. Para processos em lote (***ETL***), essa abordagem proativa não é recomendada, uma vez que o momento de check-in do usuário no sistema já passou e pode causar algum desconforto se o usuário/cliente for solicitado a confirmar algo algum tempo depois de se cadastrar no sistema.
 
-A atribuição de uma pontuação baseada em métricas, como a existência do domínio entre lista de domínios válidos (TLD) que é gerenciado pela [IANA](https://www.iana.org/domains), registros DNS do tipo MX e validação de sintaxe do nome de usuário, proporciona um bom grau de confiança. No escopo desse projeto, um domínio com TLD válido tem um peso de 45%, a presença de registros DNS do tipo MX contribui com mais 25% e uma sintaxe válida tem um peso de mais 20% no valor final da pontuação.
+A atribuição de uma pontuação baseada em métricas, como a existência do domínio entre lista de domínios válidos (TLD) que é gerenciado pela [IANA](https://www.iana.org/domains), registros DNS do tipo MX e validação de sintaxe do e-mail, proporciona um bom grau de confiança. No escopo desse projeto, um domínio com TLD válido tem um peso de 45%, a presença de registros DNS do tipo MX contribui com mais 25% e uma sintaxe válida tem um peso de mais 20% no valor final da pontuação.
 
 |Regra|percentual da pontuação|
 |--------------------------------|--------------------------|
@@ -26,11 +26,11 @@ A atribuição de uma pontuação baseada em métricas, como a existência do do
 
 > ***Observação:*** Esses percentuais fazem sentido para o contexto da regra de negócio que utilizei nesse projeto, mas caso queira pode alterar para outros percentuais. 
 
-Se o TLD for inválido, as demais regras não serão aplicadas, e a pontuação é cumulativa. Um exemplo é um endereço de e-mail onde seu TLD é válido, mas não existem registros de DNS do tipo MX e a sintaxe de nome de usuário é válida, recebe uma ***pontuação de 65%***.
+Se o TLD for inválido, as demais regras não serão aplicadas, e a pontuação é cumulativa. Um exemplo é um endereço de e-mail onde seu TLD é válido, mas não existem registros de DNS do tipo MX e a sintaxe do e-mail é válida, recebe uma ***pontuação de 65%***.
 
 O valor final da pontuação é a soma do percentual das três regras, podendo chegar, no máximo, ***a 90%***. Isso ocorre porque, mesmo com essas verificações, ainda não é possível alcançar 100% de confiança no endereço de e-mail específico. Para ***atingir 100%*** de confiança, seria necessário realizar um processo adicional de confirmação de e-mail.
 
-Implantação da solução
+### Implantação da solução
 
 Foi criada uma API com FastAPI (Python) que inclui um endpoint (***/email_validator***) que recebe um ***payload*** no método ***POST***. Esse payload contém uma chave chamada ```email``` e um valor que descreve o endereço de e-mail, por exemplo: ```{"email": "contato@renato.tec.br"}```. Esse endereço de e-mail será validado e a API deverá responder com o seguinte conteúdo:
 
