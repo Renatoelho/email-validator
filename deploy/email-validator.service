@@ -1,13 +1,13 @@
 [Unit]
-Description=Simulador de Regionais
+Description=Validando E-mail por TLD, DNS MX e sintaxe
 After=network.target
 
 [Service]
 Type=simple
 Restart=always
-WorkingDirectory=/home/user01/app/
-User=user01
-ExecStart=/bin/bash -c '/home/user01/.virtualenvs/bin/gunicorn app:app -b 0.0.0.0:8888 -k uvicorn.workers.UvicornWorker -w 4 --graceful-timeout 0 --access-logfile /home/user01/app/app.log 2>&1'
+WorkingDirectory=/home/user_email/app/
+User=user_email
+ExecStart=/bin/bash -c '/home/user_email/.virtualenvs/bin/gunicorn app:app -b 0.0.0.0:8888 -k uvicorn.workers.UvicornWorker -w 4 --graceful-timeout 0 --access-logfile /home/user_email/app/app.log 2>&1'
 
 [Install]
 WantedBy=multi-user.target

@@ -20,3 +20,12 @@ def exception_email_not_validate(email: str, mensage: str) -> dict:
         "score": -1,
         "mensage": f"Email not validated - {mensage}"
     }
+
+
+def content_error_response(mensage: str) -> dict:
+    return (
+        {
+            "status": False,
+            "erro": mensage
+        }
+    )
