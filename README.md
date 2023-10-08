@@ -44,7 +44,7 @@ Foi criada uma API com FastAPI (Python) que inclui um endpoint (***/email_valida
 }
 ```
 
-Para implantar essa solução disponibilizei uma imagem no [Docker Hub](https://hub.docker.com/repository/docker/renatoelho/email-validator/general), onde com o seguinte comando do Docker você criar um contêiner e já pode iniciar suas validações:
+Para implantar essa solução disponibilizei uma imagem no [Docker Hub](https://hub.docker.com/r/renatoelho/email-validator), onde com o seguinte comando do Docker você criar um contêiner e já pode iniciar suas validações:
 
 + Ativando a solução
 
