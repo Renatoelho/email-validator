@@ -86,7 +86,7 @@ Agradecimento a ***Emerson de Sales*** por suas contribuições para este projet
 
 + Revisar a ***white list*** para incluir novos domínios de e-mails gratuitos.
 + Adicionar ***cache*** para consultas mais recentes (Redis uma opção).
-+ Melhorar o cálculo do % para registros de DNS MX ***adicionando ping aos servidores disponíveis.
++ Melhorar o cálculo do % para registros de DNS MX ***adicionando ping*** aos servidores disponíveis.
 
 ### Referências
 
