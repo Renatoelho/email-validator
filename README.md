@@ -56,15 +56,15 @@ docker run -d --name=email-validator --hostname=email-validator -p 8888:8888 ren
 
 [http://localhost:8888/redoc](http://localhost:8888/redoc)
 
-+ Endpoint da solução
-
-[http://localhost:8000/email_validator](http://localhost:8000/email_validator) 
-
 + Endpoint para Healthcheck
 
 [http://localhost:8888/healthcheck](http://localhost:8888/healthcheck)
 
 > ***Observação:*** Esse endpoint do ***Healthcheck*** é para, se caso você for implantar a solução utilizando o docker compose por exemplo.
+
++ Endpoint da solução (Não é acessível pelo navegador) 
+
+[http://localhost:8000/email_validator](http://localhost:8000/email_validator) 
 
 ### Detalhes da aplicação
 
