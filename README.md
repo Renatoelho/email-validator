@@ -82,6 +82,12 @@ Este projeto é licenciado sob a [Licença MIT](https://opensource.org/licenses/
 
 Agradecimento a ***Emerson de Sales*** por suas contribuições para este projeto!
 
+### Próximas evoluções do projeto
+
++ Revisar a ***white list*** para incluir novos domínios de e-mails gratuitos.
++ Adicionar ***cache*** para consultas mais recentes (Redis uma opção).
++ Melhorar o cálculo do % para registros de DNS MX ***adicionando ping aos servidores disponíveis.
+
 ### Referências
 
 O que é um domínio de nível superior (TLD)?, ***Cloudflare***. Disponível em: <https://www.cloudflare.com/pt-br/learning/dns/top-level-domain/>. Acesso em: 3 out. 2023.
