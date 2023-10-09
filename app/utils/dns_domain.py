@@ -104,7 +104,7 @@ def _define_score(
                 "domain_dns_mx": score[1],
                 "syntax": score[2],
                 "score": score[3],
-                "mensage": score[4]
+                "message": score[4]
             }
         else:
             return exception_email_not_validate(email, "erro in dnsrecon")

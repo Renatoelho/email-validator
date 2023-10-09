@@ -22,7 +22,7 @@ app = FastAPI()
 )
 async def healthcheck():
     try:
-        content = {"status": True, "mensage": "everything is OK"}
+        content = {"status": True, "message": "everything is OK"}
         return JSONResponse(status_code=200, content=content)
     except Exception as erro:
         erro = f"The following error occurred on the server: {erro}"
@@ -37,8 +37,8 @@ async def healthcheck():
 )
 async def email_validator(payload: Payload):
     try:
-        content_resul = Result(**run_dns_record(payload.email)).json()
-        return JSONResponse(status_code=200, content=content_resul)
+        content_resul = Result(**run_dns_record(payload.email))
+        return JSONResponse(status_code=200, content=content_resul.dict())
     except Exception as erro:
         erro = f"The following error occurred on the server: {erro}"
         content_error = content_error_response(erro)

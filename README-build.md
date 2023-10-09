@@ -16,7 +16,7 @@ cd email-validator/
 + Fazendo o Build da imagem da aplicação
 
 ```bash
-docker build -f dockerfile -t renatoelho/email-validator:0.0.1 .
+docker build -f dockerfile -t email-validator:0.0.1 .
 ```
 
 + Ativando a aplicação:
