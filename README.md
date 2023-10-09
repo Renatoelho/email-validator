@@ -40,7 +40,8 @@ Foi criada uma API com FastAPI (Python) que inclui um endpoint (***/email_valida
     "domain_tld": true,
     "domain_dns_mx": true,
     "syntax": true,
-    "score": 90.0
+    "score": 90,
+    "message": "Trusted email"
 }
 ```
 
