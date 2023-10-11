@@ -73,7 +73,9 @@ Para obter mais detalhes sobre como este projeto foi desenvolvido, verifique os 
 
 ### Vídeo de apresentação
 
-Em desenvolvimento...
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=Bj61jJo2Mvs" target="_blank"><img src="https://drive.google.com/uc?export=view&id=1v0Jw1ZL2xowcqtOojtg1f7IR824MjQHE" alt="Vídeo de apresentação do Projeto"></a>
+</p>
 
 ### Licença
 
